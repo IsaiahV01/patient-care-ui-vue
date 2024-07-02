@@ -9,20 +9,19 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-}
-
-#action-bar, #footer-bar {
+  font: small-caps;
+  font-size: 10px;
   width: 100%;
 }
 
-#action-bar .actions-section {
-  justify-content: space-around;
+.action-bar {
+  width: 100%;
 }
 
 /* Media queries for different screen sizes */
 @media (max-width: 767px) {
   .footer-section {
     padding: 5px;
-    font-size: 14px;
+    font-size: 10px;
   }
 }

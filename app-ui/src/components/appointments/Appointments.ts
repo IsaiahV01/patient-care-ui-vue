@@ -3,6 +3,12 @@ import AppointmentList from './AppointmentList.vue';
 
 export default defineComponent({
   name: 'Appointments',
+  props: {
+    selectedDate: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     AppointmentList
   },

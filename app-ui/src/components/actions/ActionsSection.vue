@@ -1,5 +1,5 @@
 <template>
-  <div class="actions-section flex flex-wrap justify-around my-4">
+  <div class="actions-section flex flex-wrap justify-around mb-4 w-full">
     <button class="btn">
       <font-awesome-icon :icon="['fas', 'hospital-user']" /> Add Patient
     </button>
