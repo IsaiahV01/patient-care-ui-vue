@@ -36,3 +36,15 @@ tbody tr:nth-child(even) {
 .pastDue {
   background-color: lightcoral;
 }
+
+.paid-off {
+  color: green;
+}
+
+.not-paid-off {
+  color: gray;
+}
+
+.past-due {
+  color: red;
+}

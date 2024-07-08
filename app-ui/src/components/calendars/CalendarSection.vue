@@ -2,7 +2,7 @@
   <div class="calendar">
     <div class="calendar-column left-column">
       <button class="btn btn-prev-next" @click="prevWeek">Previous Week</button>
-      <button class="btn btn-prev-next" @click="prevMonth">Last Month</button>
+      <button class="btn btn-prev-next" @click="prevMonth">Prev. Month</button>
     </div>
     <div class="calendar-column middle-column">
       <div class="days-container">

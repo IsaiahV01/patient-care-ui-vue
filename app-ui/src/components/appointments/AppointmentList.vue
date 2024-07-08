@@ -20,7 +20,16 @@
           <td>{{ appointment.therapyTypes }}</td>
           <td>{{ appointment.therapist }}</td>
           <td>{{ appointment.notes }}</td>
-          <td>{{ appointment.isPaidOff }}</td>
+          <td>
+            <font-awesome-icon 
+              :icon="['fas', 'file-invoice-dollar']" 
+              :class="{
+                'paid-off': appointment.isPaidOff, 
+                'not-paid-off': !appointment.isPaidOff && !appointment.isPastDue,
+                'past-due': !appointment.isPaidOff && appointment.isPastDue
+              }"
+            />
+          </td>
           <td>{{ appointment.isPastDue }}</td>
         </tr>
       </tbody>
