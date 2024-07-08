@@ -30,7 +30,13 @@
               }"
             />
           </td>
-          <td>{{ appointment.isPastDue }}</td>
+          <td>
+            <font-awesome-icon 
+              v-if="appointment.isPastDue" 
+              :icon="['fas', 'exclamation-circle']" 
+              class="past-due-icon"
+            />
+          </td>
         </tr>
       </tbody>
     </table>

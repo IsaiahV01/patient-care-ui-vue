@@ -11,7 +11,7 @@
 
 .appointment-list h3 {
   margin-top: 0;
-  text-align: left;
+  text-align: center;
 }
 
 table {
@@ -46,5 +46,9 @@ tbody tr:nth-child(even) {
 }
 
 .past-due {
+  color: red;
+}
+
+.past-due-icon {
   color: red;
 }
