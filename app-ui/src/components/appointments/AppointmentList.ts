@@ -1,12 +1,5 @@
 import { defineComponent, PropType } from 'vue';
-
-interface Appointment {
-  time: string;
-  patient: string;
-  age: number;
-  therapy: string;
-  therapist: string;
-}
+import { Appointment } from '../../interfaces/Appointment';
 
 export default defineComponent({
   name: 'AppointmentList',

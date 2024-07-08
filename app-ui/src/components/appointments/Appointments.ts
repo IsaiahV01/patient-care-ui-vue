@@ -1,5 +1,7 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted, watch } from 'vue';
 import AppointmentList from './AppointmentList.vue';
+import { SessionsHttpClient } from '../../services/SessionsHttpClient';
+import { Appointment } from '../../interfaces/Appointment';
 
 export default defineComponent({
   name: 'Appointments',
@@ -12,16 +14,52 @@ export default defineComponent({
   components: {
     AppointmentList
   },
-  data() {
+  setup(props) {
+    const sessionsHttpClient = new SessionsHttpClient();
+
+    const amAppointments = ref<Appointment[]>([]);
+    const pmAppointments = ref<Appointment[]>([]);
+
+    const fetchAppointments = async (date: string) => {
+      try {
+        console.log(`Selected date: ${date}`);
+        const appointments = await sessionsHttpClient.getSessions(date);
+        console.log(`Fetched appointments:`, appointments);
+
+        // Filter AM appointments
+        const amApps = appointments.filter((app: Appointment) => determineTime(app) === 'AM');
+        // Filter PM appointments, excluding those already in AM appointments
+        const pmApps = appointments.filter((app: Appointment) => determineTime(app) === 'PM' && !amApps.some(amApp => amApp.sessionId === app.sessionId));
+
+        // Assign filtered appointments to the respective ref arrays
+        amAppointments.value = amApps;
+        pmAppointments.value = pmApps;
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    const determineTime = (app: Appointment): 'AM' | 'PM' => {
+      if (app.time) {
+        const hour = parseInt(app.time.split(":")[0]);
+        return hour < 12 ? 'AM' : 'PM';
+      } else {
+        const randomValue = Math.random();
+        return randomValue <= 0.5 ? 'AM' : 'PM';
+      }
+    };
+
+    onMounted(() => {
+      fetchAppointments(props.selectedDate);
+    });
+
+    watch(() => props.selectedDate, (newDate) => {
+      fetchAppointments(newDate);
+    });
+
     return {
-      amAppointments: [
-        { time: "09:00", patient: "Erik P. (Caretaker)", age: 8, therapy: "tt1", therapist: "Rose M." }
-        // Add more appointments here
-      ],
-      pmAppointments: [
-        { time: "09:00", patient: "Erik P. (Caretaker)", age: 8, therapy: "tt1", therapist: "Rose M." }
-        // Add more appointments here
-      ]
+      amAppointments,
+      pmAppointments
     };
   }
 });
