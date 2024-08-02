@@ -11,7 +11,8 @@ export abstract class HttpClientBase {
     protected getBaseUrlFromConfig(): string {
       // Read the base URL from a config file or environment variable
       // return "http://neurocorp.k8s:32698";
-      return "http://localhost:5245";
+      //return "http://localhost:5245";
+      return "http://192.168.4.169:32698";
     }
   
     protected async get<T>(url: string): Promise<T> {
