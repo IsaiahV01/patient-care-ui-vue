@@ -1,0 +1,34 @@
+/* Base styles for the application */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: monospace;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: monospace;
+}
+
+
+/* Media queries for different screen sizes */
+@media (min-width: 768px) {
+  #app {
+    flex-direction: row;
+  }
+
+  .main-content {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    padding: 10px;
+  }
+}
+
